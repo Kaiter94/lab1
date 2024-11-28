@@ -59,7 +59,7 @@ public:
     Node* newNode = new Node(key, value);
     newNode->next = table[index];
     table[index] = newNode;
-}
+    }
 
 
     string HGET(const string& key) {
