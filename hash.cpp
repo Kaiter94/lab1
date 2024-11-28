@@ -47,11 +47,20 @@ public:
     }
 
     void HSET(const string& key, const string& value) {
-        int index = hash(key);
-        Node* newNode = new Node(key, value);
-        newNode->next = table[index];
-        table[index] = newNode;
+    int index = hash(key);
+    Node* temp = table[index];
+    while (temp) {
+        if (temp->key == key) {
+            cout << "Ошибка: Ключ '" << key << "' уже существует." << endl;
+            return;
+        }
+        temp = temp->next;
     }
+    Node* newNode = new Node(key, value);
+    newNode->next = table[index];
+    table[index] = newNode;
+}
+
 
     string HGET(const string& key) {
         int index = hash(key);
